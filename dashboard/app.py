@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -11,7 +12,9 @@ st.title("🏠 Real Estate Intelligence Dashboard RD")
 
 @st.cache_data
 def load_data():
-    return pd.read_csv("data/raw/properties.csv")
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(current_dir, "..", "data", "raw", "properties.csv")
+    return pd.read_csv(file_path)
 
 df = load_data()
 
